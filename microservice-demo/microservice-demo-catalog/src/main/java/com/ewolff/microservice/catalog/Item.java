@@ -27,6 +27,11 @@ public class Item {
 		id = 0l;
 	}
 
+	public Item(Long id) {
+		super();
+		this.id = id;
+	}
+
 	public Item(String name, double price) {
 		super();
 		this.name = name;

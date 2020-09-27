@@ -1,5 +1,8 @@
 package com.ewolff.microservice.catalog.web;
 
+import com.ewolff.microservice.catalog.Item;
+import com.ewolff.microservice.catalog.ItemRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -8,9 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
-import com.ewolff.microservice.catalog.Item;
-import com.ewolff.microservice.catalog.ItemRepository;
 
 @Controller
 public class CatalogController {
@@ -60,7 +60,7 @@ public class CatalogController {
 		return new ModelAndView("itemlist", "items", itemRepository.findByNameContaining(query));
 	}
 
-	@RequestMapping(value = "/{id}.html", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/{id}.html", method = RequestMethod.POST)
 	public ModelAndView delete(@PathVariable("id") long id) {
 		itemRepository.deleteById(id);
 		return new ModelAndView("success");

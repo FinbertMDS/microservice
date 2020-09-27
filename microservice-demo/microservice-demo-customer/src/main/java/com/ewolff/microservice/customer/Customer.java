@@ -4,11 +4,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.Email;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
-import javax.validation.constraints.Email;
 
 @Entity
 public class Customer {
@@ -36,6 +36,11 @@ public class Customer {
 	public Customer() {
 		super();
 		id = 0l;
+	}
+
+public Customer(Long id) {
+		super();
+		this.id = id;
 	}
 
 	public Customer(String firstname, String name, String email, String street,

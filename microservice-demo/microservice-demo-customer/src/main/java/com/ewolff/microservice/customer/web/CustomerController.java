@@ -2,6 +2,9 @@ package com.ewolff.microservice.customer.web;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.ewolff.microservice.customer.Customer;
+import com.ewolff.microservice.customer.CustomerRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -9,9 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-
-import com.ewolff.microservice.customer.Customer;
-import com.ewolff.microservice.customer.CustomerRepository;
 
 @Controller
 public class CustomerController {
@@ -51,7 +51,7 @@ public class CustomerController {
 		return new ModelAndView("success");
 	}
 
-	@RequestMapping(value = "/{id}.html", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/{id}.html", method = RequestMethod.POST)
 	public ModelAndView delete(@PathVariable("id") long id) {
 		customerRepository.deleteById(id);
 		return new ModelAndView("success");
