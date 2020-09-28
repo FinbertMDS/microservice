@@ -7,6 +7,8 @@ import com.ewolff.microservice.order.logic.OrderRepository;
 import com.ewolff.microservice.order.logic.OrderService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -44,11 +46,9 @@ public class OrderAPIController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public Order deleteOrder(@PathVariable("id") long id) {
+	public ResponseEntity<Void> deleteOrder(@PathVariable("id") long id) {
 		orderRepository.deleteById(id);
-		Order order = new Order();
-		order.setId(id);
-		return order;
+		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 	}
 
 }
