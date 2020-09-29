@@ -28,5 +28,21 @@ services:
      - eureka
     ports:
       - "8989:8989"
+  mysql:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    entrypoint:
+      sh -c "
+        echo 'CREATE DATABASE IF NOT EXISTS catalog;' > /docker-entrypoint-initdb.d/init.sql;
+        /usr/local/bin/docker-entrypoint.sh --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+      "
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 6060:8080
+
 
 
