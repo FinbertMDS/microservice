@@ -12,6 +12,7 @@ services:
     build: ../microservice-demo/microservice-demo-catalog
     links:
      - eureka
+     - mysql
   order:
     build: ../microservice-demo/microservice-demo-order
     links:
@@ -30,7 +31,6 @@ services:
       - "8989:8989"
   mysql:
     image: mysql:5.7
-    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
     entrypoint:
@@ -40,7 +40,6 @@ services:
       "
   adminer:
     image: adminer
-    restart: always
     ports:
       - 6060:8080
 
